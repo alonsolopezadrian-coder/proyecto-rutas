@@ -61,7 +61,9 @@ def _procesar_fila(fila: list[str], puntos: dict[str, Punto]) -> Punto:
     if not nombre:
         raise FormatoInvalidoError("El campo nombre está vacío")
     if not _id_valido(id_texto):
-        raise FormatoInvalidoError(_MENSAJE_ID_INVALIDO.format(id=id_texto!r))
+        raise FormatoInvalidoError(
+            _MENSAJE_ID_INVALIDO.format(id=repr(id_texto))
+        )
 
     x = _convertir_coordenada("x", x_texto)
     y = _convertir_coordenada("y", y_texto)
