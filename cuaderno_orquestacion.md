@@ -370,7 +370,7 @@ Confirmó que no modificó otros ficheros ni ejecutó la demo o las pruebas.
 - **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
 - **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
 
-### Encargo E5
+### Encargo E6
 
 - **Agente:** Pruebas
 - **Sesión n.º:** 4
@@ -411,13 +411,142 @@ No detectó contradicciones entre el contrato y el enunciado.
 - **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
 - **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
 
+
+### Encargo E7
+
+- **Agente:** Orquestador
+- **Sesión n.º:** 1
+- **Prompt enviado:**
+
+```
+Comenzamos la fase 2: integración del proyecto.
+
+Los agentes Datos, Algoritmos y Pruebas ya han terminado sus encargos. Ahora debes crear los cuatro archivos que faltan para integrar el proyecto:
+
+1. `rutas_reparto/__init__.py`
+2. `demo.py`
+3. `README.md`
+4. `tests/__init__.py`
+
+Lee íntegramente `contrato.md` y revisa los módulos existentes para conocer sus interfaces.
+
+**Requisitos:**
+
+- `rutas_reparto/__init__.py` debe exponer la API pública definida en el contrato.
+- `demo.py` debe cargar el CSV, informar de los puntos cargados y las filas descartadas, ejecutar los cinco planificadores en el orden establecido, mostrar la tabla comparativa y guardar la gráfica.
+- `README.md` debe explicar cómo instalar las dependencias y ejecutar el proyecto y sus pruebas.
+- `tests/__init__.py` debe permitir ejecutar correctamente las pruebas como paquete.
+- Respeta estrictamente el contrato y las responsabilidades de cada agente.
+
+**Límites:**
+
+- Crea únicamente esos cuatro archivos.
+- No modifiques los archivos asignados a los subagentes.
+- No modifiques `contrato.md`.
+- No corrijas por tu cuenta errores de los módulos de otros agentes. Si detectas alguno, indícalo para que podamos encargar su corrección al agente responsable.
+- No ejecutes todavía la demo ni las pruebas.
+- No hagas ningún commit.
+
+**Al terminar, informa de:**
+
+1. Archivos creados.
+2. Qué has integrado en cada uno.
+3. Problemas o incompatibilidades detectados.
+4. Dependencias necesarias.
+5. Comandos exactos para ejecutar la demo y las pruebas desde la terminal.```
+
+- **Qué devolvió (resumen):** 
+Creó los cuatro archivos de integración: rutas_reparto/__init__.py, demo.py, README.md y tests/__init__.py.
+
+Integró la API pública del paquete, la ejecución de los cinco planificadores, la tabla comparativa y la generación de la gráfica. 
+También documentó las dependencias y los comandos para ejecutar el proyecto y las pruebas.
+
+No ejecutó la demo ni las pruebas, ni realizó ningún commit.
+
+- **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
+- **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
+
+
+### Encargo E8
+
+- **Agente:** Orquestador
+- **Sesión n.º:** 1
+- **Prompt enviado:**
+
+```
+La ejecución de `python demo.py` ha fallado con este error:
+
+text
+File "rutas_reparto/datos_externos.py", line 64
+    raise FormatoInvalidoError(_MENSAJE_ID_INVALIDO.format(id=id_texto!r))
+                                                                      ^
+SyntaxError: invalid syntax
+
+
+Identifica la causa y delega la corrección exclusivamente al agente Datos, que es el responsable de `datos_externos.py`.
+
+No corrijas tú el archivo ni modifiques otros módulos. Cuando el agente termine, revisa el cambio y explícame qué se ha corregido. 
+No ejecutes todavía la demo ni las pruebas y no hagas ningún commit hasta que te lo indique.```
+
+- **Qué devolvió (resumen):** 
+Identificó el uso incorrecto de `!r` dentro de una llamada a `str.format()` como causa del error de sintaxis.
+
+Delegó la corrección al agente Datos, que sustituyó `id=id_texto!r` por `id=repr(id_texto)`, manteniendo la representación exigida por el contrato.
+
+El orquestador revisó el cambio y confirmó que solo se había modificado la línea afectada. La corrección se registró en un commit independiente.
+
+- **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
+- **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
+
+
+### Encargo E9
+
+- **Agente:** Orquestador
+- **Sesión n.º:** 1
+- **Prompt enviado:**
+
+```
+La ejecución de las pruebas ha terminado con este resultado:
+
+text
+Ran 34 tests in 1.358s
+
+FAILED (failures=1)
+
+FAIL: test_T14_formatear_tabla
+Archivo: tests/test_rutas_reparto.py
+Línea: 613
+
+AssertionError: '105.00' not found in la tabla generada.
+
+La tabla muestra:
+Fuerza bruta       | 100 | 0
+Vecino más cercano | 105 | 5
+
+La prueba espera que las longitudes se muestren con dos decimales, por ejemplo, 100.00 y 105.00.
+
+Diagnostica el fallo y decide qué agente debe corregirlo. Comprueba el contrato y delega la corrección al responsable del archivo correspondiente.
+
+No modifiques tú los módulos de los agentes. No cambies las pruebas para ocultar el fallo. Limita la corrección al problema detectado y, cuando termine, revisa el cambio. No ejecutes todavía nada ni hagas commit.```
+
+- **Qué devolvió (resumen):** 
+Identificó que tabulate reinterpretaba como números las cadenas que ya estaban formateadas con dos decimales, eliminando los ceros finales.
+
+Delegó la corrección al agente Datos, que añadió disable_numparse=True a la llamada de tabulate en graficas.py.
+
+El orquestador revisó el cambio y confirmó que únicamente se había modificado esa llamada. La corrección se registró en un commit independiente.
+
+- **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
+- **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
+
 ## 5. Registro de integración
 
 Una fila por cada fallo detectado al juntar el trabajo de los agentes o al ejecutar la demo y las pruebas.
 
 | N.º | Iteración | Qué falló (mensaje de error o síntoma) | Causa | Agente responsable | Encargo de corrección | ¿Resuelto? |
 |---|---|---|---|---|---|---|
-| F1 | 1 | *Ej.: `ImportError: cannot import name 'Ruta'`* | *Ej.: el agente 1 la llamó `RutaReparto`, el contrato decía `Ruta`* | Agente 1 | E5 | Sí |
+| F1 | 1 | 	SyntaxError: invalid syntax en datos_externos.py, línea 64 | Uso incorrecto de !r dentro de str.format() | Datos | 	Corrección del error de sintaxis | Sí |
+| F2 | 2 | 	Fallo de test_T14_formatear_tabla: no aparecía 105.00, sino 105 | tabulate reinterpretaba las cadenas numéricas y eliminaba los decimales finales | Datos | Corrección del formato decimal en graficas.py | Sí |
 | | | | | | | |
 
 ## 6. Gestión de créditos
@@ -434,13 +563,13 @@ Anota cada vez que un modelo gratuito dejó de responder por límite de uso.
 
 | Dato | Valor esperado (enunciado) | Valor obtenido | ¿Coincide? |
 |---|---|---|---|
-| Puntos cargados | | | |
-| Filas descartadas | | | |
-| Longitud: Fuerza bruta | | | |
-| Longitud: Vecino más cercano | | | |
-| Longitud: Inserción más barata | | | |
-| Longitud: Vecino más cercano + 2-opt | | | |
-| Longitud: Inserción más barata + 2-opt | | | |
+| Puntos cargados | 10 | 10 | SÍ |
+| Filas descartadas | 4 | 4 | SÍ |
+| Longitud: Fuerza bruta | 252,24 | 252,24 | SÍ |
+| Longitud: Vecino más cercano | 291,61 | 291,61 | SÍ |
+| Longitud: Inserción más barata | 287,94 | 287,94 | SÍ |
+| Longitud: Vecino más cercano + 2-opt | 267,06 | 267,06 | SÍ |
+| Longitud: Inserción más barata + 2-opt | 252,24 | 252,24 | SÍ |
 
 ### Pruebas
 
@@ -452,6 +581,8 @@ Anota cada vez que un modelo gratuito dejó de responder por límite de uso.
 ```
 
 - ¿Alguna prueba del agente 3 encontró un error real en el código de los agentes 1 o 2? ¿Cuál?
+Sí. La prueba T14 detectó un error en el formato de la tabla comparativa, implementada por el agente Datos en graficas.py. 
+Los valores numéricos se mostraban sin los dos decimales exigidos por el contrato.
 
 ## 8. Valoración de los agentes
 
