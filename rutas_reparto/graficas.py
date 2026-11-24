@@ -51,7 +51,12 @@ def formatear_tabla(filas: Sequence[tuple[str, float, float]]) -> str:
         [nombre, f"{longitud:.2f}", f"{porcentaje:.2f}"]
         for nombre, longitud, porcentaje in filas
     ]
-    return tabulate(cuerpo, headers=_CABECERAS_TABLA, tablefmt="grid")
+    return tabulate(
+        cuerpo,
+        headers=_CABECERAS_TABLA,
+        tablefmt="grid",
+        disable_numparse=True,
+    )
 
 
 def _coordenadas(paradas: Sequence[str], mapa: MapaReparto) -> tuple[list[float], list[float]]:
