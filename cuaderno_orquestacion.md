@@ -8,7 +8,7 @@
 |---|---|
 | Nombre y apellidos | Adrián Alonso López |
 | Repositorio (URL) | https://github.com/alonsolopezadrian-coder/proyecto-rutas |
-| Vídeo (URL) | |
+| Vídeo (URL) | https://www.youtube.com/watch?v=fheDhyFiHx8 |
 | Fecha de inicio | 24/11/2026 |
 | Fecha de entrega | 25/11/2026 |
 
