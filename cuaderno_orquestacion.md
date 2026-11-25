@@ -10,7 +10,7 @@
 | Repositorio (URL) | https://github.com/alonsolopezadrian-coder/proyecto-rutas |
 | Vídeo (URL) | |
 | Fecha de inicio | 24/11/2026 |
-| Fecha de entrega | |
+| Fecha de entrega | 25/11/2026 |
 
 ### Agentes
 
@@ -48,10 +48,10 @@ Una fila por cada sesión de OpenCode: las sesiones principales con el orquestad
 
 | N.º | Fecha y hora | Agente | Motivo (encargo inicial, corrección, reanudación...) | ¿Respetó qué ficheros podía leer? | Captura o exportación de la sesión |
 |---|---|---|---|---|---|
-| 1 | 24/11/2026 | Orquestador | Generación y revisión del contrato de interfaces | Sí | exportación sesión  |
-| 2 | 24/11/2026 | Datos | Implementar módulos de datos | Sí. Solo contrato, CSV y sus cinco ficheros asignados | exportación sesión |
-| 3 | 24/11/2026 | Algoritmos | Implementar planificadores | Sí. Solo contrato y planificadores.py | exportación sesión |
-| 4 | 24/11/2026 | Pruebas | Diseñar pruebas unitarias | Sí. No leyó código de implementación; solo contrato, enunciado y CSV | exportación sesión |
+| 1 | 24/11/2026 | Orquestador | Generación y revisión del contrato de interfaces | Sí | seccionesOpenCode/1_orquestador  |
+| 2 | 24/11/2026 | Datos | Implementar módulos de datos | Sí. Solo contrato, CSV y sus cinco ficheros asignados | seccionesOpenCode/2_agentes |
+| 3 | 24/11/2026 | Algoritmos | Implementar planificadores | Sí. Solo contrato y planificadores.py | seccionesOpenCode/2_agentes |
+| 4 | 24/11/2026 | Pruebas | Diseñar pruebas unitarias | Sí. No leyó código de implementación; solo contrato, enunciado y CSV | seccionesOpenCode/3_pruebas |
 
 ## 4. Registro de encargos
 
@@ -319,8 +319,6 @@ FORMATO DE ENTREGA:
 - **Qué devolvió (resumen):** 
 Creó los cinco módulos asignados. Implementó las excepciones, las clases Punto y Ruta, el mapa, la carga del CSV y las funciones de gráficas. 
 Declaró haber respetado D9, las reglas de redondeo y sus límites de escritura. 
-Indicó algunas decisiones no especificadas expresamente en el contrato.
-
 
 - **¿Respeta el contrato?** Sí / No. Si no, qué incumple: Sí
 - **Decisión:** aceptado / rechazado / aceptado con correcciones (encargo n.º ...) aceptado 
@@ -573,10 +571,57 @@ Anota cada vez que un modelo gratuito dejó de responder por límite de uso.
 
 ### Pruebas
 
-- Comando ejecutado:
-- Número de pruebas y resultado (pega las últimas líneas de la salida):
+- Comando ejecutado: python -m unittest discover -s tests -v
+- Número de pruebas y resultado (pega las últimas líneas de la salida): 33 correctas, 1 fallidas
 
-```text
+```(ml5149) C:\Users\Adrian\Desktop\FP\MP5149 - Desarrollo componentes software - Ivan Conde\proyecto-rutas>python -m unittest discover -s tests -v
+test_T07_csv_de_control (test_rutas_reparto.TestCargaCsv.test_T07_csv_de_control) ... ok
+test_csv_cabecera_invalida (test_rutas_reparto.TestCargaCsv.test_csv_cabecera_invalida) ... ok
+test_csv_con_filas_erroneas_creado_en_la_prueba (test_rutas_reparto.TestCargaCsv.test_csv_con_filas_erroneas_creado_en_la_prueba) ... ok
+test_csv_inexistente_file_not_found (test_rutas_reparto.TestCargaCsv.test_csv_inexistente_file_not_found) ... ok
+test_csv_sin_almacen (test_rutas_reparto.TestCargaCsv.test_csv_sin_almacen) ... ok
+test_T15_planificadores_sobre_csv_rutas_validas (test_rutas_reparto.TestCasosLimite.test_T15_planificadores_sobre_csv_rutas_validas) ... ok
+test_T16_dos_opt_nunca_empeora (test_rutas_reparto.TestCasosLimite.test_T16_dos_opt_nunca_empeora) ... ok
+test_cero_entregas_todos_los_planificadores (test_rutas_reparto.TestCasosLimite.test_cero_entregas_todos_los_planificadores) ... ok
+test_una_entrega_dos_opt_no_puede_mejorar (test_rutas_reparto.TestCasosLimite.test_una_entrega_dos_opt_no_puede_mejorar) ... ok
+test_jerarquia_de_excepciones (test_rutas_reparto.TestExcepciones.test_jerarquia_de_excepciones) ... ok
+test_parametro_invalido_en_consultas_diversas (test_rutas_reparto.TestExcepciones.test_parametro_invalido_en_consultas_diversas) ... ok
+test_planificador_base_lanza_not_implemented (test_rutas_reparto.TestExcepciones.test_planificador_base_lanza_not_implemented) ... ok
+test_T13_calcular_diferencia (test_rutas_reparto.TestGraficas.test_T13_calcular_diferencia) ... ok
+test_T14_formatear_tabla (test_rutas_reparto.TestGraficas.test_T14_formatear_tabla) ... FAIL
+test_graficas_rechazan_longitudes_invalidas (test_rutas_reparto.TestGraficas.test_graficas_rechazan_longitudes_invalidas) ... ok
+test_guardar_comparativa_listas_de_distinta_longitud (test_rutas_reparto.TestGraficas.test_guardar_comparativa_listas_de_distinta_longitud) ... ok
+test_T04_matriz_distancias_simetrica_y_diagonal (test_rutas_reparto.TestMapa.test_T04_matriz_distancias_simetrica_y_diagonal) ... ok
+test_T05_obtener_entregas_ordenadas_y_almacen (test_rutas_reparto.TestMapa.test_T05_obtener_entregas_ordenadas_y_almacen) ... ok
+test_T06_longitud_suma_tramos_redondeados (test_rutas_reparto.TestMapa.test_T06_longitud_suma_tramos_redondeados) ... ok
+test_consultas_mapa_ids_desconocidos_o_cortas (test_rutas_reparto.TestMapa.test_consultas_mapa_ids_desconocidos_o_cortas) ... ok
+test_mapa_construccion_validaciones (test_rutas_reparto.TestMapa.test_mapa_construccion_validaciones) ... ok
+test_T08_fuerza_bruta_rechaza_mas_de_10_entregas (test_rutas_reparto.TestPlanificadores.test_T08_fuerza_bruta_rechaza_mas_de_10_entregas) ... ok
+test_T09_fuerza_bruta_conserva_primera_en_empate (test_rutas_reparto.TestPlanificadores.test_T09_fuerza_bruta_conserva_primera_en_empate) ... ok
+test_T10_vecino_mas_cercano_empate_id_menor (test_rutas_reparto.TestPlanificadores.test_T10_vecino_mas_cercano_empate_id_menor) ... ok
+test_T11_insercion_mas_barata_resultado_esperado (test_rutas_reparto.TestPlanificadores.test_T11_insercion_mas_barata_resultado_esperado) ... ok
+test_T12_mejora_dos_opt_con_stub (test_rutas_reparto.TestPlanificadores.test_T12_mejora_dos_opt_con_stub) ... ok
+test_T01_distancia_a_euclidea_redondeada (test_rutas_reparto.TestPunto.test_T01_distancia_a_euclidea_redondeada) ... ok
+test_T02_punto_valida_id_coordenadas (test_rutas_reparto.TestPunto.test_T02_punto_valida_id_coordenadas) ... ok
+test_punto_igualdad_y_hash (test_rutas_reparto.TestPunto.test_punto_igualdad_y_hash) ... ok
+test_punto_repr_exacto (test_rutas_reparto.TestPunto.test_punto_repr_exacto) ... ok
+test_T03_repr_contiene_nombre_paradas_y_longitud (test_rutas_reparto.TestRuta.test_T03_repr_contiene_nombre_paradas_y_longitud) ... ok
+test_T03_ruta_rechaza_paradas_invalidas (test_rutas_reparto.TestRuta.test_T03_ruta_rechaza_paradas_invalidas) ... ok
+test_ruta_guarda_copia_de_paradas (test_rutas_reparto.TestRuta.test_ruta_guarda_copia_de_paradas) ... ok
+test_ruta_igualdad (test_rutas_reparto.TestRuta.test_ruta_igualdad) ... ok
+
+======================================================================
+FAIL: test_T14_formatear_tabla (test_rutas_reparto.TestGraficas.test_T14_formatear_tabla)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\Adrian\Desktop\FP\MP5149 - Desarrollo componentes software - Ivan Conde\proyecto-rutas\tests\test_rutas_reparto.py", line 613, in test_T14_formatear_tabla
+    self.assertIn(
+AssertionError: '105.00' not found in '+--------------------+------------+------------------+\n| Planificador       |   Longitud |   Diferencia (%) |\n+====================+============+==================+\n| Fuerza bruta       |        100 |                0 |\n+--------------------+------------+------------------+\n| Vecino más cercano |        105 |                5 |\n+--------------------+------------+------------------+' : Las longitudes se formatean a 2 decimales
+
+----------------------------------------------------------------------
+Ran 34 tests in 1.358s
+
+FAILED (failures=1)
 
 ```
 
@@ -584,24 +629,103 @@ Anota cada vez que un modelo gratuito dejó de responder por límite de uso.
 Sí. La prueba T14 detectó un error en el formato de la tabla comparativa, implementada por el agente Datos en graficas.py. 
 Los valores numéricos se mostraban sin los dos decimales exigidos por el contrato.
 
+Siguiente prueba ok: 34 correctas, 0 fallidas
+
+```(ml5149) C:\Users\Adrian\Desktop\FP\MP5149 - Desarrollo componentes software - Ivan Conde\proyecto-rutas>python -m unittest discover -s tests -v
+test_T07_csv_de_control (test_rutas_reparto.TestCargaCsv.test_T07_csv_de_control) ... ok
+test_csv_cabecera_invalida (test_rutas_reparto.TestCargaCsv.test_csv_cabecera_invalida) ... ok
+test_csv_con_filas_erroneas_creado_en_la_prueba (test_rutas_reparto.TestCargaCsv.test_csv_con_filas_erroneas_creado_en_la_prueba) ... ok
+test_csv_inexistente_file_not_found (test_rutas_reparto.TestCargaCsv.test_csv_inexistente_file_not_found) ... ok
+test_csv_sin_almacen (test_rutas_reparto.TestCargaCsv.test_csv_sin_almacen) ... ok
+test_T15_planificadores_sobre_csv_rutas_validas (test_rutas_reparto.TestCasosLimite.test_T15_planificadores_sobre_csv_rutas_validas) ... ok
+test_T16_dos_opt_nunca_empeora (test_rutas_reparto.TestCasosLimite.test_T16_dos_opt_nunca_empeora) ... ok
+test_cero_entregas_todos_los_planificadores (test_rutas_reparto.TestCasosLimite.test_cero_entregas_todos_los_planificadores) ... ok
+test_una_entrega_dos_opt_no_puede_mejorar (test_rutas_reparto.TestCasosLimite.test_una_entrega_dos_opt_no_puede_mejorar) ... ok
+test_jerarquia_de_excepciones (test_rutas_reparto.TestExcepciones.test_jerarquia_de_excepciones) ... ok
+test_parametro_invalido_en_consultas_diversas (test_rutas_reparto.TestExcepciones.test_parametro_invalido_en_consultas_diversas) ... ok
+test_planificador_base_lanza_not_implemented (test_rutas_reparto.TestExcepciones.test_planificador_base_lanza_not_implemented) ... ok
+test_T13_calcular_diferencia (test_rutas_reparto.TestGraficas.test_T13_calcular_diferencia) ... ok
+test_T14_formatear_tabla (test_rutas_reparto.TestGraficas.test_T14_formatear_tabla) ... ok
+test_graficas_rechazan_longitudes_invalidas (test_rutas_reparto.TestGraficas.test_graficas_rechazan_longitudes_invalidas) ... ok
+test_guardar_comparativa_listas_de_distinta_longitud (test_rutas_reparto.TestGraficas.test_guardar_comparativa_listas_de_distinta_longitud) ... ok
+test_T04_matriz_distancias_simetrica_y_diagonal (test_rutas_reparto.TestMapa.test_T04_matriz_distancias_simetrica_y_diagonal) ... ok
+test_T05_obtener_entregas_ordenadas_y_almacen (test_rutas_reparto.TestMapa.test_T05_obtener_entregas_ordenadas_y_almacen) ... ok
+test_T06_longitud_suma_tramos_redondeados (test_rutas_reparto.TestMapa.test_T06_longitud_suma_tramos_redondeados) ... ok
+test_consultas_mapa_ids_desconocidos_o_cortas (test_rutas_reparto.TestMapa.test_consultas_mapa_ids_desconocidos_o_cortas) ... ok
+test_mapa_construccion_validaciones (test_rutas_reparto.TestMapa.test_mapa_construccion_validaciones) ... ok
+test_T08_fuerza_bruta_rechaza_mas_de_10_entregas (test_rutas_reparto.TestPlanificadores.test_T08_fuerza_bruta_rechaza_mas_de_10_entregas) ... ok
+test_T09_fuerza_bruta_conserva_primera_en_empate (test_rutas_reparto.TestPlanificadores.test_T09_fuerza_bruta_conserva_primera_en_empate) ... ok
+test_T10_vecino_mas_cercano_empate_id_menor (test_rutas_reparto.TestPlanificadores.test_T10_vecino_mas_cercano_empate_id_menor) ... ok
+test_T11_insercion_mas_barata_resultado_esperado (test_rutas_reparto.TestPlanificadores.test_T11_insercion_mas_barata_resultado_esperado) ... ok
+test_T12_mejora_dos_opt_con_stub (test_rutas_reparto.TestPlanificadores.test_T12_mejora_dos_opt_con_stub) ... ok
+test_T01_distancia_a_euclidea_redondeada (test_rutas_reparto.TestPunto.test_T01_distancia_a_euclidea_redondeada) ... ok
+test_T02_punto_valida_id_coordenadas (test_rutas_reparto.TestPunto.test_T02_punto_valida_id_coordenadas) ... ok
+test_punto_igualdad_y_hash (test_rutas_reparto.TestPunto.test_punto_igualdad_y_hash) ... ok
+test_punto_repr_exacto (test_rutas_reparto.TestPunto.test_punto_repr_exacto) ... ok
+test_T03_repr_contiene_nombre_paradas_y_longitud (test_rutas_reparto.TestRuta.test_T03_repr_contiene_nombre_paradas_y_longitud) ... ok
+test_T03_ruta_rechaza_paradas_invalidas (test_rutas_reparto.TestRuta.test_T03_ruta_rechaza_paradas_invalidas) ... ok
+test_ruta_guarda_copia_de_paradas (test_rutas_reparto.TestRuta.test_ruta_guarda_copia_de_paradas) ... ok
+test_ruta_igualdad (test_rutas_reparto.TestRuta.test_ruta_igualdad) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 1.463s
+
+OK```
+
+
 ## 8. Valoración de los agentes
 
 Puntúa de 1 (muy mal) a 5 (muy bien). Esta tabla es la base de la parte del vídeo sobre qué agentes rindieron mejor.
 
-| Criterio | Orquestador | Agente 1 | Agente 2 | Agente 3 |
+| Criterio | Orquestador | Datos | Algoritmos | Pruebas |
 |---|---|---|---|---|
-| Respeto al contrato | | | | |
-| Calidad del código o de las pruebas | | | | |
-| Pocas correcciones necesarias | | | | |
-| Claridad de sus explicaciones | | | | |
-| Gestión del límite de uso gratuito | | | | |
-| **Total** | | | | |
+| Respeto al contrato | 5 | 5 | 5 | 5 |
+| Calidad del código o de las pruebas | 4 | 4 | 5 | 5 |
+| Pocas correcciones necesarias | 4 | 3 | 5 | 5 |
+| Claridad de sus explicaciones | 5 | 5 | 5 | 5 |
+| Gestión del límite de uso gratuito | 5 | 5 | 5 | 5 |
+| **Total** | 23 | 22 | 25 | 25 |
 
 **Comentario sobre cada agente** (2 o 3 líneas cada uno):
+Orquestador: Ha realizado correctamente la coordinación del proyecto, repartiendo las tareas entre los agentes y encargándose de la integración. 
+Ha sabido identificar los errores durante las pruebas y asignar las correcciones al agente correspondiente.
+
+Datos: Ha desarrollado correctamente los módulos de datos y gráficas, aunque durante la integración aparecieron dos errores que fue necesario corregir. 
+Respondió adecuadamente a las indicaciones del orquestador y solucionó ambos problemas.
+
+Algoritmos: Ha implementado los diferentes planificadores siguiendo las reglas del contrato. 
+Los resultados obtenidos coinciden con los datos de control y no ha sido necesario realizar correcciones en su implementación.
+
+Pruebas: Ha preparado una batería de 34 pruebas que cubren las funcionalidades principales, las excepciones y distintos casos límite. 
+Las pruebas permitieron detectar un error real durante la integración y finalmente todas han terminado correctamente.
 
 ## 9. Reflexión
 
 1. ¿Qué parte del proceso costó más y por qué?
+
+Creo que lo más laborioso es establecer el prompt inicial. Me ayudé con otra IA teniendo en cuenta todos los requisitos.
+Lo complicado fue convertir el enunciado en instrucciones suficientemente concretas para que los agentes trabajasen de forma independiente.
+
 2. ¿Qué fallos de integración aparecieron y qué los provocó?
+
+Aparecieron dos errores durante la integración. 
+El primero fue un error de sintaxis en la carga de datos CSV, provocado por utilizar incorrectamente `!r` dentro de una llamada a `str.format()`. 
+El segundo apareció en la tabla comparativa, donde la librería `tabulate` eliminaba los ceros finales de los números decimales. 
+Ambos errores se solucionaron encargando las correcciones al agente responsable de esos módulos.
+
 3. ¿Qué cambiarías del contrato o de los encargos si volvieras a empezar?
+
+Dejar especificado desde el principio que los resultados de la tabla deben conservar siempre dos decimales, incluso cuando el segundo decimal sea cero.
+Pedir a cada agente que, antes de dar su trabajo por terminado, compruebe que sus archivos se pueden importar y que no contienen errores de sintaxis.
+Es una mejora que se justifica directamente con el error de !r que apareció al ejecutar la demo.
+
 4. ¿Qué has aprendido sobre trabajar con varios agentes y modelos de IA que no sabías antes?
+
+He aprendido a utilizar OpenCode, una herramienta que no conocía y que me ha permitido trabajar con varios agentes de IA dentro de un mismo proyecto. 
+Antes no había trabajado de esta manera y desconocía que los agentes podían tener instrucciones, modelos y responsabilidades independientes.
+También he comprobado lo importante que es definir un contrato desde el principio. 
+Pensaba que bastaba con repartir las tareas, pero he visto que es necesario establecer unas reglas comunes, las interfaces entre módulos 
+y lo que debe hacer cada agente para que después todo encaje.
+Por último, he aprendido que utilizar varios agentes no significa que todo funcione automáticamente. 
+Es necesario coordinar su trabajo, revisar lo que hacen, comprobar la integración y realizar pruebas. 
+La IA ayuda mucho a desarrollar, pero sigue siendo necesaria la supervisión de una persona.
